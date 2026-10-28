@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Счёт — выставляйте счета клиентам за минуту</title>
+<meta name="description" content="Сервис для фрилансеров: создайте счёт, отправьте ссылку клиенту и получайте уведомление об оплате.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#fff;--ink:#1a1d3a;--brand:#2b2d8f;--soft:#eef0fb;--coral:#ff6b5b;--muted:#5b5f80}
+*{box-sizing:border-box;margin:0}
+body{font:400 17px/1.6 Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.top{background:var(--brand);color:#fff}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:22px}
+.login{color:#fff;font-weight:600;text-decoration:none}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center;padding:40px 0 80px}
+h1{font-weight:800;font-size:clamp(34px,5vw,54px);line-height:1.1;margin-bottom:18px}
+.hero p{color:#d5d7f5;max-width:28em;margin-bottom:26px}
+.btn{display:inline-block;background:var(--coral);color:#fff;font-weight:800;padding:14px 28px;border-radius:10px;text-decoration:none;border:0;font-size:17px;font-family:inherit;cursor:pointer}
+.btn:hover{background:#ff5240}
+.inv{background:#fff;color:var(--ink);border-radius:16px;padding:26px;box-shadow:0 20px 50px #0004}
+.inv h2{font-size:15px;color:var(--muted);font-weight:600;margin-bottom:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--soft)}
+.row label{font-weight:600}
+.row input{width:96px;font:inherit;padding:8px 10px;border:2px solid var(--soft);border-radius:8px;text-align:right}
+.row input:focus{border-color:var(--brand);outline:none}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px}
+.total b{font-size:32px;color:var(--brand)}
+.hint{font-size:14px;color:var(--muted);margin-top:10px}
+section{padding:70px 0}
+h2.t{font-size:clamp(26px,3.5vw,36px);font-weight:800;line-height:1.2;margin-bottom:34px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.feat h3{font-size:19px;margin-bottom:6px}
+.feat p{color:var(--muted)}
+.plans{background:var(--soft)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.plan{background:#fff;border-radius:14px;padding:28px;display:flex;flex-direction:column}
+.plan.hot{border:3px solid var(--brand)}
+.plan h3{font-size:19px}
+.price{font-size:34px;font-weight:800;margin:8px 0 14px}
+.price small{font-size:15px;font-weight:400;color:var(--muted)}
+.plan ul{padding-left:20px;color:var(--muted);margin-bottom:20px;flex:1}
+.plan .btn{text-align:center;background:var(--brand)}
+.plan .btn:hover{background:#1f2170}
+.cta{text-align:center}
+.cta p{color:var(--muted);margin-bottom:22px}
+footer{padding:30px 0;text-align:center;color:var(--muted);font-size:15px}
+@media(max-width:760px){.hero,.feat,.pg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+<header><span class="logo">Счёт</span><a class="login" href="#">Войти</a></header>
+<div class="hero">
+<div>
+<h1>Выставьте счёт клиенту за минуту</h1>
+<p>Укажите часы и ставку, отправьте ссылку и получите уведомление, когда клиент оплатит. Без таблиц и ручных напоминаний.</p>
+<a class="btn" href="#plans">Попробовать бесплатно</a>
+</div>
+<div class="inv">
+<h2>Счёт №014 · Редизайн сайта</h2>
+<div class="row"><label for="h">Часы работы</label><input id="h" type="number" min="0" value="12"></div>
+<div class="row"><label for="r">Ставка, грн/час</label><input id="r" type="number" min="0" value="600"></div>
+<div class="total"><span>К оплате</span><b id="sum">7 200 грн</b></div>
+<p class="hint">Измените числа: сумма пересчитается сразу.</p>
+</div>
+</div>
+</div></div>
+
+<main class="wrap">
+<section>
+<h2 class="t">Всё, что нужно для оплаты</h2>
+<div class="feat">
+<div><h3>Счёт по ссылке</h3><p>Клиенту не нужно регистрироваться: он открывает ссылку и сразу видит сумму и реквизиты.</p></div>
+<div><h3>Напоминания</h3><p>Если счёт не оплачен через 3 дня, клиент получит вежливое письмо. Вам писать не придётся.</p></div>
+<div><h3>Учёт доходов</h3><p>Все счета в одном списке с фильтром по клиентам и месяцам. Выгрузка в CSV одной кнопкой.</p></div>
+</div>
+</section>
+</main>
+
+<section class="plans" id="plans"><div class="wrap">
+<h2 class="t">Тарифы</h2>
+<div class="pg">
+<div class="plan"><h3>Старт</h3><div class="price">0 грн</div><ul><li>3 счёта в месяц</li><li>Оплата по ссылке</li></ul><a class="btn" href="#">Начать бесплатно</a></div>
+<div class="plan hot"><h3>Фрилансер</h3><div class="price">199 грн <small>/ мес</small></div><ul><li>Безлимит счетов</li><li>Автонапоминания</li><li>Выгрузка в CSV</li></ul><a class="btn" href="#">Выбрать тариф</a></div>
+<div class="plan"><h3>Команда</h3><div class="price">499 грн <small>/ мес</small></div><ul><li>До 5 участников</li><li>Общий список клиентов</li><li>Свой логотип в счетах</li></ul><a class="btn" href="#">Выбрать тариф</a></div>
+</div>
+</div></section>
+
+<section class="wrap cta">
+<h2 class="t">Первый счёт — сегодня</h2>
+<p>Регистрация занимает меньше минуты, карта не нужна.</p>
+<a class="btn" href="#">Создать аккаунт</a>
+</section>
+<footer>© 2026 Счёт. Демо-страница.</footer>
+
+<script>
+const h=document.getElementById('h'),r=document.getElementById('r'),s=document.getElementById('sum');
+function calc(){const t=Math.max(0,+h.value||0)*Math.max(0,+r.value||0);s.textContent=t.toLocaleString('ru-RU')+' грн'}
+h.addEventListener('input',calc);r.addEventListener('input',calc);calc();
+</script>
+</body>
+</html>
